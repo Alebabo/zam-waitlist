@@ -5,7 +5,8 @@ export default async function handler(req, res) {
 
   try {
     for (let i = 0; i < 100; i++) {
-      const url = `https://api.resend.com/contacts?limit=100${after ? `&after=${after}` : ''}`;
+      const seg = process.env.RESEND_SEGMENT_ID ? `&segment_id=${process.env.RESEND_SEGMENT_ID}` : '';
+      const url = `https://api.resend.com/contacts?limit=100${seg}${after ? `&after=${after}` : ''}`;
       const r = await fetch(url, { headers });
       if (!r.ok) throw new Error(`${r.status} ${await r.text()}`);
       const d = await r.json();

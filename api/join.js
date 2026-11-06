@@ -16,7 +16,11 @@ export default async function handler(req, res) {
   const r = await fetch(`${API}/contacts`, {
     method: 'POST',
     headers,
-    body: JSON.stringify({ email, unsubscribed: false }),
+    body: JSON.stringify({
+      email,
+      unsubscribed: false,
+      ...(process.env.RESEND_SEGMENT_ID && { segments: [{ id: process.env.RESEND_SEGMENT_ID }] }),
+    }),
   });
 
   if (!r.ok) {
