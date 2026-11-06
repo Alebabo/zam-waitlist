@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Zam – Offene Spiele in München</title>
-<meta name="description" content="Du willst kicken, neun andere auch. Zam sammelt Leute für offene Spiele in München.">
+<meta name="description" content="Von Studenten für alle. Zam sammelt Leute für offene Spiele in München.">
 <meta name="theme-color" content="#f4f7fb">
 <link rel="preconnect" href="https://images.unsplash.com">
 <style>
@@ -42,7 +42,7 @@
   main{padding-top:calc(var(--hh) + env(safe-area-inset-top))}
 
   /* Hero */
-  .hero{position:relative;margin-top:10px;border-radius:36px;overflow:hidden;min-height:580px;display:flex;align-items:flex-end;padding:20px}
+  .hero{position:relative;margin-top:10px;border-radius:32px;overflow:hidden;min-height:540px;display:flex;align-items:flex-end;padding:20px}
   .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0) 25%,rgba(15,23,42,.5))}
   .card{position:relative;z-index:1;width:100%;max-width:520px;padding:28px 24px;background:rgba(255,255,255,.66)}
@@ -68,7 +68,7 @@
   .msg{min-height:22px;margin-top:10px;font-size:14px;font-weight:600;color:var(--tum-dark)}
 
   /* Sections */
-  section{padding:64px 0 0}
+  section{padding:52px 0 0}
   h2{font-size:clamp(26px,5vw,34px);letter-spacing:-.03em;line-height:1.1;font-weight:800;margin-bottom:8px}
   .sub{color:var(--muted);max-width:560px;margin-bottom:24px}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
@@ -92,11 +92,23 @@
   .dots i{flex:1;height:10px;border-radius:5px;background:#e5eaf2}
   .dots i.on{background:var(--tum);animation:pop .4s backwards}
 
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-  .chips span{padding:9px 16px;border-radius:999px;font-size:15px;font-weight:600;background:rgba(255,255,255,.7);border:1px solid #fff;box-shadow:0 4px 12px rgba(15,23,42,.05);transition:transform .2s}
-  .chips span:nth-child(odd){transform:rotate(-2deg)}
-  .chips span:nth-child(even){transform:rotate(2deg)}
-  .chips span:hover{transform:rotate(0) scale(1.06)}
+  .sports{padding-top:44px}
+  .rail{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+    margin:16px -20px 0;padding:6px 20px 10px;scroll-padding-left:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .sport{position:relative;flex:0 0 72%;max-width:280px;aspect-ratio:4/5;border-radius:26px;overflow:hidden;scroll-snap-align:start;
+    box-shadow:0 14px 34px rgba(15,23,42,.14);transition:transform .25s}
+  .sport:nth-child(odd){transform:rotate(-1.2deg)}
+  .sport:nth-child(even){transform:rotate(1.2deg)}
+  .sport img{width:100%;height:100%;object-fit:cover}
+  .sport figcaption{position:absolute;left:10px;right:10px;bottom:10px;padding:12px 14px;border-radius:18px;
+    background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%)}
+  .sport b{display:block;font-size:18px;letter-spacing:-.02em}
+  .sport span{font-size:13px;color:var(--muted)}
+  .pager{display:flex;justify-content:center;gap:6px;margin-top:10px}
+  .pager i{width:7px;height:7px;border-radius:4px;background:rgba(15,23,42,.18);transition:width .25s,background .25s}
+  .pager i.on{width:22px;background:var(--orange)}
+  @media (min-width:900px){.sport{flex-basis:30%}}
 
   .quote{position:relative;border-radius:36px;overflow:hidden;min-height:400px;display:flex;align-items:flex-end;padding:20px}
   .quote>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -128,7 +140,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
   @media (max-width:720px){
-    .hero{min-height:640px;padding:12px;border-radius:30px}
+    .hero{min-height:560px;padding:10px;border-radius:28px}
     .card{padding:24px 20px}
     .ball{width:44px;height:44px;top:20px;right:20px}
     .venue{grid-template-columns:1fr}
@@ -157,8 +169,8 @@
     <div class="ball" aria-hidden="true"></div>
     <div class="card glass">
       <div class="count"><b id="count">–</b><span id="countLabel">warten schon aufs erste Spiel</span></div>
-      <h1>Du willst kicken. <em>Neun andere</em> auch.</h1>
-      <p class="lead">Zam sammelt Leute für offene Spiele in München. Du trägst dich ein, wir sagen dir, wann und wo angepfiffen wird.</p>
+      <h1>Von Studenten <em>für alle.</em></h1>
+      <p class="lead">Du willst kicken, neun andere auch. Zam sammelt Leute für offene Spiele in München. Du trägst dich ein, wir sagen dir, wann und wo es losgeht.</p>
       <form id="f">
         <input type="email" name="email" placeholder="deine@mail.de" required autocomplete="email" aria-label="E-Mail-Adresse">
         <button>Auf die Warteliste</button>
@@ -166,6 +178,20 @@
       <div class="msg" id="msg"></div>
     </div>
   </div>
+
+
+  <section class="sports">
+    <h2>Was gespielt wird</h2>
+    <div class="rail" id="rail">
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1630420598913-44208d36f9af?w=700&h=900&q=70&auto=format&fit=crop" alt="Kleinfeld-Fußball im Käfig" loading="lazy"><figcaption><b>5er-Fußball</b><span>10 Leute, eine Stunde, Käfig oder Halle</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1725828120196-93020e53481f?w=700&h=900&q=70&auto=format&fit=crop" alt="Beachvolleyball-Gruppe am Netz" loading="lazy"><figcaption><b>Beachvolleyball</b><span>4 bis 8 Leute, im Winter in der Halle</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1767128890576-ecc5c643f9c4?w=700&h=900&q=70&auto=format&fit=crop" alt="Vier Spielerinnen auf einem Padel-Court" loading="lazy"><figcaption><b>Padel</b><span>Immer zu viert, auch für Einsteiger</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1672068787369-82556699e538?w=700&h=900&q=70&auto=format&fit=crop" alt="Squash-Spieler an der Wand" loading="lazy"><figcaption><b>Squash</b><span>Zu zweit, 45 Minuten Vollgas</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&h=900&q=70&auto=format&fit=crop" alt="Badmintonspieler im Sprung" loading="lazy"><figcaption><b>Badminton</b><span>Einzel oder Doppel</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1543633550-f431af584afd?w=700&h=900&q=70&auto=format&fit=crop" alt="Gruppe beim Streetball" loading="lazy"><figcaption><b>Basketball</b><span>3 gegen 3 oder 5 gegen 5</span></figcaption></figure>
+    </div>
+    <div class="pager" id="pager" aria-hidden="true"></div>
+  </section>
 
   <section>
     <h2>So läuft's</h2>
@@ -191,9 +217,6 @@
         <h3>Anpfiff</h3>
         <p>Sind genug zusammen, wird der Platz gebucht und jeder zahlt seinen Anteil. Kommen nicht genug, zahlt keiner was.</p>
       </div>
-    </div>
-    <div class="chips">
-      <span>5er-Fußball</span><span>Beachvolleyball</span><span>Padel</span><span>Squash</span><span>Badminton</span><span>Basketball</span>
     </div>
   </section>
 
@@ -248,6 +271,10 @@
     b.disabled=false;
   };
   document.querySelectorAll('a[href="#top"]').forEach(a=>a.onclick=e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>f.email.focus({preventScroll:true}),450)});
+  const rail=document.getElementById('rail'),pager=document.getElementById('pager');
+  [...rail.children].forEach(()=>pager.appendChild(document.createElement('i')));
+  const upd=()=>{const w=rail.children[0].offsetWidth+12;const k=Math.round(rail.scrollLeft/w);[...pager.children].forEach((d,i)=>d.classList.toggle('on',i===Math.min(k,pager.children.length-1)))};
+  rail.addEventListener('scroll',upd,{passive:true});upd();
   document.querySelectorAll('.dots i.on').forEach((d,i)=>d.style.animationDelay=i*80+'ms');
 </script>
 </body>
