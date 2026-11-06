@@ -57,10 +57,13 @@
   h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:8px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%23E37222' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x;background-size:20px 8px}
   .lead{color:var(--muted);margin:14px 0 20px}
-  form{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid #fff;box-shadow:0 4px 14px rgba(15,23,42,.06)}
-  input{flex:1;min-width:0;border:0;background:transparent;padding:10px 14px;font:inherit;font-size:16px;outline:none;color:var(--ink)}
-  button{border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;color:#fff;background:var(--tum);cursor:pointer;white-space:nowrap;transition:transform .15s}
-  button:hover{background:var(--tum-dark);transform:rotate(-2deg) scale(1.03)}
+  form{display:flex;flex-direction:column;gap:10px}
+  input{width:100%;border:1px solid #fff;border-radius:18px;background:rgba(255,255,255,.9);padding:15px 18px;font:inherit;font-size:16px;outline:none;color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06);transition:box-shadow .2s}
+  input:focus{box-shadow:0 0 0 3px rgba(48,112,179,.35)}
+  button{width:100%;border:0;border-radius:18px;padding:15px 18px;font:inherit;font-size:17px;font-weight:800;color:#fff;background:var(--orange);cursor:pointer;box-shadow:0 8px 20px rgba(227,114,34,.35);transition:transform .15s,box-shadow .15s}
+  button::after{content:" →"}
+  button:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:0 12px 26px rgba(227,114,34,.42)}
+  button:active{transform:scale(.98)}
   button:disabled{opacity:.5}
   .msg{min-height:22px;margin-top:10px;font-size:14px;font-weight:600;color:var(--tum-dark)}
 
@@ -133,10 +136,6 @@
     .quote{padding:12px;border-radius:30px}
     .tum{display:none}
   }
-  @media (max-width:380px){
-    form{flex-direction:column;border-radius:22px}
-    button{padding:12px}
-  }
 </style>
 </head>
 <body>
@@ -162,7 +161,7 @@
       <p class="lead">Zam sammelt Leute für offene Spiele in München. Du trägst dich ein, wir sagen dir, wann und wo angepfiffen wird.</p>
       <form id="f">
         <input type="email" name="email" placeholder="deine@mail.de" required autocomplete="email" aria-label="E-Mail-Adresse">
-        <button>Ich bin dabei</button>
+        <button>Auf die Warteliste</button>
       </form>
       <div class="msg" id="msg"></div>
     </div>
@@ -225,7 +224,7 @@
   <div class="cta glass">
     <div class="big">zam<span>.</span></div>
     <p>Heißt auf Bayrisch „zusammen“. Mehr muss man dazu eigentlich nicht sagen.</p>
-    <a href="#top">Auf die Warteliste</a>
+    <a href="#top">Ich bin dabei</a>
   </div>
 
   <footer>
