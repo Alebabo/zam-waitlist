@@ -15,7 +15,7 @@
     --r:28px; --hh:76px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{overflow-x:clip;overscroll-behavior:none;scroll-padding-top:calc(var(--hh) + 12px)}
+  html{overflow-x:clip;overscroll-behavior:none;}
   body{overflow-x:clip;overscroll-behavior:none;max-width:100%;
     font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Rounded","SF Pro Text",Inter,system-ui,sans-serif;
     color:var(--ink);-webkit-font-smoothing:antialiased;
@@ -32,14 +32,16 @@
     box-shadow:0 18px 50px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.9)}
 
   /* Header, fixiert */
-  header{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:max(12px,env(safe-area-inset-top))}
-  .bar{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 8px 0 18px;border-radius:999px}
+  header{position:relative;z-index:5;padding-top:env(safe-area-inset-top);background:rgba(255,255,255,.6);
+    border-bottom:1px solid rgba(255,255,255,.85);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+    box-shadow:0 6px 24px rgba(15,23,42,.05)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:60px}
   .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;letter-spacing:-.04em;color:var(--ink);text-decoration:none}
   .logo i{width:18px;height:18px;border-radius:50%;background:conic-gradient(var(--tum) 0 25%,#fff 0 50%,var(--orange) 0 75%,#fff 0);border:2px solid var(--ink);animation:spin 6s linear infinite}
   .bar a.join{font-size:14px;font-weight:700;color:#fff;background:var(--tum);padding:9px 16px;border-radius:999px;text-decoration:none}
   .tum{font-size:12px;font-weight:600;color:var(--tum-dark)}
   .right{display:flex;align-items:center;gap:12px}
-  main{padding-top:calc(var(--hh) + env(safe-area-inset-top))}
+  main{padding-bottom:calc(190px + env(safe-area-inset-bottom))}
 
   /* Hero */
   .hero{position:relative;margin-top:10px;border-radius:32px;overflow:hidden;min-height:540px;display:flex;align-items:flex-end;padding:20px}
@@ -49,23 +51,26 @@
   .ball{position:absolute;z-index:2;top:26px;right:26px;width:54px;height:54px;border-radius:50%;
     background:radial-gradient(circle at 32% 30%,#fff 0 18%,transparent 19%),conic-gradient(#fff 0 20%,var(--ink) 0 26%,#fff 0 46%,var(--ink) 0 52%,#fff 0 72%,var(--ink) 0 78%,#fff 0);
     box-shadow:0 10px 24px rgba(0,0,0,.35);animation:bounce 1.6s cubic-bezier(.3,0,.5,1) infinite}
-  .count{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
-  .count b{font-size:52px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--tum)}
-  .count span{color:var(--muted);font-weight:600}
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 10px calc(10px + env(safe-area-inset-bottom))}
+  .dock-in{max-width:520px;margin:0 auto;padding:14px;border-radius:26px;background:rgba(255,255,255,.72);
+    box-shadow:0 -6px 40px rgba(15,23,42,.16),inset 0 1px 0 rgba(255,255,255,.9)}
+  .count{display:flex;align-items:baseline;gap:8px;margin:0 4px 10px}
+  .count b{font-size:28px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--tum)}
+  .count span{color:var(--muted);font-weight:600;font-size:14px}
   h1{font-size:clamp(30px,6.4vw,44px);line-height:1.05;letter-spacing:-.035em;font-weight:800}
   h1 em{font-style:normal;color:var(--orange);position:relative;white-space:nowrap}
   h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:8px;
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%23E37222' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x;background-size:20px 8px}
-  .lead{color:var(--muted);margin:14px 0 20px}
-  form{display:flex;flex-direction:column;gap:10px}
-  input{width:100%;border:1px solid #fff;border-radius:18px;background:rgba(255,255,255,.9);padding:15px 18px;font:inherit;font-size:16px;outline:none;color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06);transition:box-shadow .2s}
+  .lead{color:var(--muted);margin:14px 0 0}
+  form{display:flex;flex-direction:column;gap:8px}
+  input{width:100%;border:1px solid #fff;border-radius:16px;background:rgba(255,255,255,.95);padding:13px 16px;font:inherit;font-size:16px;outline:none;color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06);transition:box-shadow .2s}
   input:focus{box-shadow:0 0 0 3px rgba(48,112,179,.35)}
-  button{width:100%;border:0;border-radius:18px;padding:15px 18px;font:inherit;font-size:17px;font-weight:800;color:#fff;background:var(--orange);cursor:pointer;box-shadow:0 8px 20px rgba(227,114,34,.35);transition:transform .15s,box-shadow .15s}
+  button{width:100%;border:0;border-radius:16px;padding:13px 16px;font:inherit;font-size:16px;font-weight:800;color:#fff;background:var(--orange);cursor:pointer;box-shadow:0 8px 20px rgba(227,114,34,.35);transition:transform .15s,box-shadow .15s}
   button::after{content:" →"}
   button:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:0 12px 26px rgba(227,114,34,.42)}
   button:active{transform:scale(.98)}
   button:disabled{opacity:.5}
-  .msg{min-height:22px;margin-top:10px;font-size:14px;font-weight:600;color:var(--tum-dark)}
+  .msg{font-size:14px;font-weight:600;color:var(--tum-dark);margin:8px 4px 0}.msg:empty{display:none}
 
   /* Sections */
   section{padding:52px 0 0}
@@ -140,7 +145,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
   @media (max-width:720px){
-    .hero{min-height:560px;padding:10px;border-radius:28px}
+    .hero{min-height:470px;padding:10px;border-radius:28px}
     .card{padding:24px 20px}
     .ball{width:44px;height:44px;top:20px;right:20px}
     .venue{grid-template-columns:1fr}
@@ -153,11 +158,11 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="bar glass">
+    <div class="bar">
       <a class="logo" href="#top"><i></i>zam</a>
       <div class="right">
         <span class="tum">TUM Startup Launchpad</span>
-        <a class="join" href="#top">Mitspielen</a>
+        <a class="join" href="#dock">Mitspielen</a>
       </div>
     </div>
   </div>
@@ -168,14 +173,8 @@
     <img src="https://images.unsplash.com/photo-1759210720456-c9814f721479?w=1800&q=70&auto=format&fit=crop" alt="Luftbild eines beleuchteten Kleinfeld-Fußballplatzes bei Nacht" fetchpriority="high">
     <div class="ball" aria-hidden="true"></div>
     <div class="card glass">
-      <div class="count"><b id="count">–</b><span id="countLabel">warten schon aufs erste Spiel</span></div>
       <h1>Von Studenten <em>für alle.</em></h1>
       <p class="lead">Du willst kicken, neun andere auch. Zam sammelt Leute für offene Spiele in München. Du trägst dich ein, wir sagen dir, wann und wo es losgeht.</p>
-      <form id="f">
-        <input type="email" name="email" placeholder="deine@mail.de" required autocomplete="email" aria-label="E-Mail-Adresse">
-        <button>Auf die Warteliste</button>
-      </form>
-      <div class="msg" id="msg"></div>
     </div>
   </div>
 
@@ -247,7 +246,7 @@
   <div class="cta glass">
     <div class="big">zam<span>.</span></div>
     <p>Heißt auf Bayrisch „zusammen“. Mehr muss man dazu eigentlich nicht sagen.</p>
-    <a href="#top">Ich bin dabei</a>
+    <a href="#dock">Ich bin dabei</a>
   </div>
 
   <footer>
@@ -255,6 +254,17 @@
     <span>Fotos: Unsplash</span>
   </footer>
 </main>
+
+<div class="dock" id="dock">
+  <div class="dock-in glass">
+    <div class="count"><b id="count">–</b><span id="countLabel">warten schon aufs erste Spiel</span></div>
+    <form id="f">
+      <input type="email" name="email" placeholder="deine@mail.de" required autocomplete="email" aria-label="E-Mail-Adresse">
+      <button>Auf die Warteliste</button>
+    </form>
+    <div class="msg" id="msg"></div>
+  </div>
+</div>
 
 <script>
   const c=document.getElementById('count'),cl=document.getElementById('countLabel'),m=document.getElementById('msg'),f=document.getElementById('f');
@@ -270,7 +280,7 @@
     }catch{m.textContent='Hat nicht geklappt. Nochmal?'}
     b.disabled=false;
   };
-  document.querySelectorAll('a[href="#top"]').forEach(a=>a.onclick=e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>f.email.focus({preventScroll:true}),450)});
+  document.querySelectorAll('a[href="#dock"]').forEach(a=>a.onclick=e=>{e.preventDefault();f.email.focus()});
   const rail=document.getElementById('rail'),pager=document.getElementById('pager');
   [...rail.children].forEach(()=>pager.appendChild(document.createElement('i')));
   const upd=()=>{const w=rail.children[0].offsetWidth+12;const k=Math.round(rail.scrollLeft/w);[...pager.children].forEach((d,i)=>d.classList.toggle('on',i===Math.min(k,pager.children.length-1)))};
