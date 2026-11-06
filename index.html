@@ -102,10 +102,8 @@
   .sport{position:relative;flex:0 0 72%;max-width:280px;aspect-ratio:4/5;border-radius:26px;overflow:hidden;scroll-snap-align:start;
     box-shadow:0 14px 34px rgba(15,23,42,.14)}
   .sport img{width:100%;height:100%;object-fit:cover}
-  .sport figcaption{position:absolute;left:10px;right:10px;bottom:10px;padding:12px 14px;border-radius:18px;
-    background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%)}
-  .sport b{display:block;font-size:18px;letter-spacing:-.02em}
-  .sport span{font-size:13px;color:var(--muted)}
+  .sport figcaption{position:absolute;left:10px;bottom:10px;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--ink);
+    background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(14px) saturate(170%);-webkit-backdrop-filter:blur(14px) saturate(170%)}
   .pager{display:flex;justify-content:center;gap:6px;margin-top:10px}
   .pager i{width:7px;height:7px;border-radius:4px;background:rgba(15,23,42,.18);transition:width .25s,background .25s}
   .pager i.on{width:22px;background:var(--orange)}
@@ -179,12 +177,12 @@
   <section class="sports">
     <h2>Was gespielt wird</h2>
     <div class="rail" id="rail">
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1630420598771-dd52ab08c8cb?w=700&h=900&q=70&auto=format&fit=crop" alt="Fußballspieler im orange-weißen Trikot auf dem Platz" loading="lazy"><figcaption><b>5er-Fußball</b><span>10 Leute, eine Stunde, Käfig oder Halle</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1601512986351-9b0e01780eef?w=700&h=900&q=70&auto=format&fit=crop" alt="Volleyballspieler in weißen Shorts" loading="lazy"><figcaption><b>Beachvolleyball</b><span>4 bis 8 Leute, im Winter in der Halle</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1767128890576-ecc5c643f9c4?w=700&h=900&q=70&auto=format&fit=crop" alt="Vier Spielerinnen auf einem Padel-Court" loading="lazy"><figcaption><b>Padel</b><span>Immer zu viert, auch für Einsteiger</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1694723844526-4d0898a129fa?w=700&h=900&q=70&auto=format&fit=crop" alt="Zwei junge Männer mit Schlägern auf dem Court" loading="lazy"><figcaption><b>Squash</b><span>Zu zweit, 45 Minuten Vollgas</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&h=900&q=70&auto=format&fit=crop" alt="Badmintonspieler im Sprung" loading="lazy"><figcaption><b>Badminton</b><span>Einzel oder Doppel</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1741652781778-55d16665bb41?w=700&h=900&q=70&auto=format&fit=crop" alt="Streetball in einem Münchner Park" loading="lazy"><figcaption><b>Basketball</b><span>3 gegen 3 oder 5 gegen 5</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1630420598771-dd52ab08c8cb?w=700&h=900&q=70&auto=format&fit=crop" alt="Fußballspieler im orange-weißen Trikot auf dem Platz" loading="lazy"><figcaption>5er-Fußball</figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1601512986351-9b0e01780eef?w=700&h=900&q=70&auto=format&fit=crop" alt="Volleyballspieler in weißen Shorts" loading="lazy"><figcaption>Beachvolleyball</figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1767128890576-ecc5c643f9c4?w=700&h=900&q=70&auto=format&fit=crop" alt="Vier Spielerinnen auf einem Padel-Court" loading="lazy"><figcaption>Padel</figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1694723844526-4d0898a129fa?w=700&h=900&q=70&auto=format&fit=crop" alt="Zwei junge Männer mit Schlägern auf dem Court" loading="lazy"><figcaption>Squash</figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&h=900&q=70&auto=format&fit=crop" alt="Badmintonspieler im Sprung" loading="lazy"><figcaption>Badminton</figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1741652781778-55d16665bb41?w=700&h=900&q=70&auto=format&fit=crop" alt="Streetball in einem Münchner Park" loading="lazy"><figcaption>Basketball</figcaption></figure>
     </div>
     <div class="pager" id="pager" aria-hidden="true"></div>
   </section>
