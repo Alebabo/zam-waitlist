@@ -83,36 +83,15 @@
   section{padding:52px 0 0}
   h2{font-size:clamp(26px,5vw,34px);letter-spacing:-.03em;line-height:1.1;font-weight:800;margin-bottom:8px}
   .sub{color:var(--muted);max-width:560px;margin-bottom:24px}
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-  .step{padding:24px;transition:transform .25s}
-  .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;margin-bottom:14px}
-  .n{background:var(--tum)}
-  .step h3{font-size:19px;letter-spacing:-.015em;margin-bottom:6px}
-  .step p{color:var(--muted);font-size:15px}
-
-  .game{margin-top:16px;padding:14px;border-radius:18px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.07)}
-  .game .t{display:flex;justify-content:space-between;font-size:14px;font-weight:700}
-  .game .t span:last-child{color:var(--orange)}
-  .game .w{font-size:13px;color:var(--muted);margin:2px 0 10px}
-  .dots{display:flex;gap:5px}
-  .dots i{flex:1;height:10px;border-radius:5px;background:#e5eaf2}
-  .dots i.on{background:var(--tum);}
-
-  .sports{padding-top:44px}
-  .rail{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
-    margin:16px -20px 0;padding:6px 20px 10px;scroll-padding-left:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .rail::-webkit-scrollbar{display:none}
-  .sport{position:relative;flex:0 0 72%;max-width:280px;aspect-ratio:4/5;border-radius:26px;overflow:hidden;scroll-snap-align:start;
-    box-shadow:0 14px 34px rgba(15,23,42,.14);transition:transform .25s}
-  .sport img{width:100%;height:100%;object-fit:cover}
-  .sport figcaption{position:absolute;left:10px;right:10px;bottom:10px;padding:12px 14px;border-radius:18px;
-    background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%)}
-  .sport b{display:block;font-size:18px;letter-spacing:-.02em}
-  .sport span{font-size:13px;color:var(--muted)}
-  .pager{display:flex;justify-content:center;gap:6px;margin-top:10px}
-  .pager i{width:7px;height:7px;border-radius:4px;background:rgba(15,23,42,.18);transition:width .25s,background .25s}
-  .pager i.on{width:22px;background:var(--orange)}
-  @media (min-width:900px){.sport{flex-basis:30%}}
+  .steps{list-style:none;display:grid;gap:12px}
+  .step{display:flex;gap:14px;align-items:flex-start;padding:22px 20px}
+  .n{flex:0 0 32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:16px;color:#fff;background:var(--tum);margin-top:1px}
+  .step h3{font-size:21px;letter-spacing:-.02em;line-height:1.3;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:16px}
+  .after{margin-top:22px;font-size:18px;font-weight:600}
+  .feature{padding-top:48px}
+  .feature .accent{width:96px;height:5px;border-radius:3px;background:var(--orange);margin:6px 0 16px}
+  .feature p{color:var(--muted);font-size:17px;max-width:560px}
 
   .quote{position:relative;border-radius:36px;overflow:hidden;min-height:400px;display:flex;align-items:flex-end;padding:20px}
   .quote>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -190,29 +169,25 @@
 
   <section>
     <h2>75.000 schauen in Fröttmaning zu. Warum spielen so wenige selbst?</h2>
-    <p class="sub">Meistens scheitert es nicht an der Lust, sondern an zehn Leuten, die zur selben Zeit können. Das übernimmt Zam.</p>
-    <div class="steps">
-      <div class="step glass">
-        <div class="n">1</div>
-        <h3>Offenes Spiel</h3>
-        <p>Sieh, wo diese Woche noch Leute fehlen. Melde dich allein an, wir füllen das Team auf.</p>
-        <div class="game" aria-hidden="true">
-          <div class="t"><span>5er-Fußball</span><span>7 / 10</span></div>
-          <div class="w">Di, 18:00 · Oberschleißheim</div>
-          <div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
-      <div class="step glass">
-        <div class="n">2</div>
-        <h3>Leute wiederfinden</h3>
-        <p>Mit wem es gepasst hat, dem folgst du. Du siehst, wo er als Nächstes spielt, und ihr ladet euch gegenseitig ein.</p>
-      </div>
-      <div class="step glass">
-        <div class="n">3</div>
-        <h3>Freundschaftsspiel</h3>
-        <p>Ihr seid schon zu fünft? Dann suchen wir euch einen Gegner auf eurem Niveau und einen freien Platz.</p>
-      </div>
-    </div>
+    <p class="sub">Meistens scheitert es nicht an der Lust, sondern an zehn Leuten, die zur selben Zeit können.</p>
+    <ol class="steps">
+      <li class="step glass"><span class="n">1</span><div><h3>Spiel finden.</h3><p>Offene Spiele zu verschiedenen Zeiten in Hallen in und um München.</p></div></li>
+      <li class="step glass"><span class="n">2</span><div><h3>Platz sichern.</h3><p>Allein oder zu zweit eintragen. Bezahlt wird erst, wenn das Spiel steht.</p></div></li>
+      <li class="step glass"><span class="n">3</span><div><h3>Hingehen und spielen.</h3><p>Sind genug zusammen, ist der Platz gebucht. Du musst nur noch auftauchen.</p></div></li>
+    </ol>
+    <p class="after">So einfach kann Mannschaftssport sein.</p>
+  </section>
+
+  <section class="feature">
+    <h2>Leute wiederfinden</h2>
+    <div class="accent"></div>
+    <p>Mit wem es gepasst hat, dem folgst du. Du siehst, wo er als Nächstes spielt, und ihr ladet euch gegenseitig ein.</p>
+  </section>
+
+  <section class="feature">
+    <h2>Freundschaftsspiel</h2>
+    <div class="accent"></div>
+    <p>Ihr seid schon zu fünft? Dann suchen wir euch einen Gegner auf eurem Niveau und einen freien Platz.</p>
   </section>
 
   <section>
@@ -288,7 +263,6 @@
   [...rail.children].forEach(()=>pager.appendChild(document.createElement('i')));
   const upd=()=>{const w=rail.children[0].offsetWidth+12;const k=Math.round(rail.scrollLeft/w);[...pager.children].forEach((d,i)=>d.classList.toggle('on',i===Math.min(k,pager.children.length-1)))};
   rail.addEventListener('scroll',upd,{passive:true});upd();
-  document.querySelectorAll('.dots i.on').forEach((d,i)=>d.style.animationDelay=i*80+'ms');
 </script>
 </body>
 </html>
