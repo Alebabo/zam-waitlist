@@ -13,6 +13,9 @@ export default async function handler(req, res) {
     'Content-Type': 'application/json',
   };
 
+  const existing = await fetch(`${API}/contacts/${encodeURIComponent(email)}`, { headers });
+  if (existing.ok) return res.status(200).json({ ok: true, existing: true });
+
   const r = await fetch(`${API}/contacts`, {
     method: 'POST',
     headers,
