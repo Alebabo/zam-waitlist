@@ -45,7 +45,9 @@
 
   /* Hero */
   .hero{position:relative;margin-top:10px;border-radius:32px;overflow:hidden;min-height:540px;display:flex;align-items:flex-end;padding:20px}
-  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .slides{position:absolute;inset:0}
+  .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+  .slides img.on{opacity:1}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.35))}
   .card{position:relative;z-index:1;width:100%;max-width:520px;padding:28px 24px;background:rgba(255,255,255,.66)}
   .dock{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 10px calc(10px + env(safe-area-inset-bottom))}
@@ -120,7 +122,7 @@
 
   @media (max-width:720px){
     .hero{min-height:0;display:block;padding:0;border-radius:0;overflow:visible}
-    .hero>img{position:relative;height:340px;border-radius:28px;object-position:50% 50%}
+    .slides{position:relative;height:340px;border-radius:28px;overflow:hidden}
     .hero::after{display:none}
     .card{margin:-64px 10px 0;width:auto}
     .card{padding:24px 20px}
@@ -146,7 +148,11 @@
 
 <main class="wrap" id="top">
   <div class="hero">
-    <img src="https://images.unsplash.com/photo-1658491830143-72808ca237e3?w=1800&q=75&auto=format&fit=crop" alt="Indoor-Padel-Court mit Netz und Glaswänden" fetchpriority="high">
+    <div class="slides" aria-hidden="false">
+      <img class="on" src="https://images.unsplash.com/photo-1689942963385-f5bd03f3b270?w=1800&q=75&auto=format&fit=crop" alt="Blauer Court mit Netz" fetchpriority="high">
+      <img class="" src="https://images.unsplash.com/photo-1695950695168-f4038b55a9ca?w=1800&q=75&auto=format&fit=crop" alt="Court bei Sonnenuntergang" loading="lazy">
+      <img class="" src="https://images.unsplash.com/photo-1658491830143-72808ca237e3?w=1800&q=75&auto=format&fit=crop" alt="Indoor-Padel-Court mit Netz und Glaswänden" loading="lazy">
+    </div>
         <div class="card glass">
       <h1>Von Studenten <em>für alle.</em></h1>
       <p class="lead">Mannschaftssport, so spontan wie eine Runde Joggen. Du meldest dich an, Zam findet die anderen neun.</p>
@@ -157,8 +163,8 @@
   <section class="sports">
     <h2>Was gespielt wird</h2>
     <div class="rail" id="rail">
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1630420598913-44208d36f9af?w=700&h=900&q=70&auto=format&fit=crop" alt="Kleinfeld-Fußball im Käfig" loading="lazy"><figcaption><b>5er-Fußball</b><span>10 Leute, eine Stunde, Käfig oder Halle</span></figcaption></figure>
-      <figure class="sport"><img src="https://images.unsplash.com/photo-1725828120196-93020e53481f?w=700&h=900&q=70&auto=format&fit=crop" alt="Beachvolleyball-Gruppe am Netz" loading="lazy"><figcaption><b>Beachvolleyball</b><span>4 bis 8 Leute, im Winter in der Halle</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1630420598771-dd52ab08c8cb?w=700&h=900&q=70&auto=format&fit=crop" alt="Fußballspieler im orange-weißen Trikot auf dem Platz" loading="lazy"><figcaption><b>5er-Fußball</b><span>10 Leute, eine Stunde, Käfig oder Halle</span></figcaption></figure>
+      <figure class="sport"><img src="https://images.unsplash.com/photo-1601512986351-9b0e01780eef?w=700&h=900&q=70&auto=format&fit=crop" alt="Volleyballspieler in weißen Shorts" loading="lazy"><figcaption><b>Beachvolleyball</b><span>4 bis 8 Leute, im Winter in der Halle</span></figcaption></figure>
       <figure class="sport"><img src="https://images.unsplash.com/photo-1767128890576-ecc5c643f9c4?w=700&h=900&q=70&auto=format&fit=crop" alt="Vier Spielerinnen auf einem Padel-Court" loading="lazy"><figcaption><b>Padel</b><span>Immer zu viert, auch für Einsteiger</span></figcaption></figure>
       <figure class="sport"><img src="https://images.unsplash.com/photo-1672068787369-82556699e538?w=700&h=900&q=70&auto=format&fit=crop" alt="Squash-Spieler an der Wand" loading="lazy"><figcaption><b>Squash</b><span>Zu zweit, 45 Minuten Vollgas</span></figcaption></figure>
       <figure class="sport"><img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&h=900&q=70&auto=format&fit=crop" alt="Badmintonspieler im Sprung" loading="lazy"><figcaption><b>Badminton</b><span>Einzel oder Doppel</span></figcaption></figure>
@@ -259,6 +265,8 @@
   document.getElementById('dockClose').onclick=()=>setMin(true);
   document.getElementById('bubble').onclick=()=>{setMin(false);f.email.focus()};
   document.querySelectorAll('a[href="#dock"]').forEach(a=>a.onclick=e=>{e.preventDefault();setMin(false);f.email.focus()});
+  const sl=[...document.querySelectorAll('.slides img')];let si=0;
+  if(sl.length>1&&!matchMedia('(prefers-reduced-motion: reduce)').matches){sl.forEach(i=>i.loading='eager');setInterval(()=>{sl[si].classList.remove('on');si=(si+1)%sl.length;sl[si].classList.add('on')},5000)}
   const rail=document.getElementById('rail'),pager=document.getElementById('pager');
   [...rail.children].forEach(()=>pager.appendChild(document.createElement('i')));
   const upd=()=>{const w=rail.children[0].offsetWidth+12;const k=Math.round(rail.scrollLeft/w);[...pager.children].forEach((d,i)=>d.classList.toggle('on',i===Math.min(k,pager.children.length-1)))};
