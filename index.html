@@ -99,7 +99,8 @@
   .partners p{font-size:13px;font-weight:600;color:var(--muted)}
   .logos{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 28px;margin-top:12px}
   .logo-slot{font-size:15px;font-weight:700;letter-spacing:-.01em;color:#8a97ab}
-  .logos img{height:28px;width:auto;filter:grayscale(1);opacity:.7}
+  .logos img{height:26px;width:auto}
+  .logos img.utum{height:40px}
   .sports{padding-top:44px}
   .rail{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
     margin:16px -20px 0;padding:6px 20px 10px;scroll-padding-left:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -184,8 +185,9 @@
   <section class="partners">
     <p>Entstanden im TUM Startup Launchpad</p>
     <div class="logos">
-      <span class="logo-slot">TUM</span>
-      <span class="logo-slot">UnternehmerTUM</span>
+      <img src="/logos/tum.svg" alt="Technische Universität München" height="26">
+      <img src="/logos/lmu.svg" alt="Ludwig-Maximilians-Universität München" height="26">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/UTUM_Logo_RGB_pos_300.png" alt="UnternehmerTUM" height="40" class="utum">
       <span class="logo-slot">Freistaat Bayern</span>
     </div>
   </section>
