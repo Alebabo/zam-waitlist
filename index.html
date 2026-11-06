@@ -36,7 +36,7 @@
     border-bottom:1px solid rgba(255,255,255,.85);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
     box-shadow:0 6px 24px rgba(15,23,42,.05)}
   .bar{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;letter-spacing:-.04em;color:var(--ink);text-decoration:none}
+  .logo{display:flex;align-items:center;gap:0;font-weight:800;font-size:22px;letter-spacing:-.04em;color:var(--ink);text-decoration:none}
   .logo span{color:var(--tum)}
   .bar a.join{font-size:14px;font-weight:700;color:#fff;background:var(--tum);padding:9px 16px;border-radius:999px;text-decoration:none}
   .tum{font-size:12px;font-weight:600;color:var(--tum-dark)}
@@ -140,7 +140,10 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
   @media (max-width:720px){
-    .hero{min-height:470px;padding:10px;border-radius:28px}
+    .hero{min-height:0;display:block;padding:0;border-radius:0;overflow:visible}
+    .hero>img{position:relative;height:340px;border-radius:28px;object-position:50% 62%}
+    .hero::after{display:none}
+    .card{margin:-64px 10px 0;width:auto}
     .card{padding:24px 20px}
     .venue{grid-template-columns:1fr}
     .venue .img{min-height:200px;order:-1}
