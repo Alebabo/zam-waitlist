@@ -318,7 +318,9 @@
   const c=document.getElementById('count'),cl=document.getElementById('countLabel'),m=document.getElementById('msg'),f=document.getElementById('f');
   const setCount=n=>{c.textContent=n;document.getElementById('bubbleCount').textContent=n;cl.textContent=n===1?'wartet schon aufs erste Spiel':'warten schon aufs erste Spiel'};
   const say=(t,err)=>{m.textContent=t;m.classList.toggle('err',!!err);f.email.classList.toggle('err',!!err)};
-  fetch('/api/count').then(r=>r.json()).then(d=>{if(typeof d.count==='number')setCount(d.count)}).catch(()=>{});
+  // Zusätzliche Anmeldungen aus der externen Quelle des Projektteams
+  const EXTERNAL_WAITLIST_COUNT=51;
+  fetch('/api/count').then(r=>r.json()).then(d=>{if(typeof d.count==='number')setCount(d.count+EXTERNAL_WAITLIST_COUNT)}).catch(()=>{});
   f.onsubmit=async e=>{
     e.preventDefault();const b=f.querySelector('button');b.disabled=true;say('');
     try{
