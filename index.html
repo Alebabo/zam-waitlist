@@ -108,8 +108,10 @@
   .steps{list-style:none;display:grid;gap:10px}
   .step{display:flex;gap:14px;align-items:flex-start;padding:20px;background:var(--weiss);border-radius:8px}
   .n{flex:0 0 36px;height:36px;border-radius:50%;display:grid;place-items:center;font:800 20px/1 var(--head);color:var(--wald);background:var(--mint)}
-  .badge{flex:none;display:flex;align-items:center;gap:8px}
-  .step-ball{width:30px;height:30px;fill:none;stroke:var(--mittel);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .badge{flex:0 0 52px;width:52px;height:52px;position:relative;display:grid;place-items:center}
+  .step-ball{position:absolute;inset:0;width:100%;height:100%;fill:var(--hellgruen);stroke:var(--salbei);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+  .badge .n{position:relative;flex:none;width:auto;height:auto;background:none;font-size:26px;color:var(--wald);
+    paint-order:stroke;-webkit-text-stroke:5px var(--weiss);text-shadow:0 0 0 var(--weiss)}
   .step h3{font:700 24px/1.05 var(--head);text-transform:uppercase;letter-spacing:.01em;margin:6px 0 6px}
   .step p{color:var(--gruengrau)}
   .after{margin-top:20px;font-size:18px;font-weight:700}
@@ -255,9 +257,9 @@
     <h2>75.000 schauen in Fröttmaning zu. Warum spielen so wenige selbst?</h2>
     <p class="sub">Meistens scheitert es nicht an der Lust, sondern an zehn Leuten, die zur selben Zeit können.</p>
     <ol class="steps">
-      <li class="step"><div class="badge"><span class="n">1</span><svg class="step-ball" aria-hidden="true"><use href="#b-fussball"/></svg></div><div><h3>Spiel finden</h3><p>Offene Spiele zu verschiedenen Zeiten in Hallen in und um München.</p></div></li>
-      <li class="step"><div class="badge"><span class="n">2</span><svg class="step-ball" aria-hidden="true"><use href="#b-volleyball"/></svg></div><div><h3>Platz sichern</h3><p>Allein oder zu zweit eintragen. Bezahlt wird erst, wenn das Spiel steht.</p></div></li>
-      <li class="step"><div class="badge"><span class="n">3</span><svg class="step-ball" aria-hidden="true"><use href="#b-basketball"/></svg></div><div><h3>Hingehen und spielen</h3><p>Sind genug zusammen, ist der Platz gebucht. Du musst nur noch auftauchen.</p></div></li>
+      <li class="step"><div class="badge"><svg class="step-ball" aria-hidden="true"><use href="#b-fussball"/></svg><span class="n">1</span></div><div><h3>Spiel finden</h3><p>Offene Spiele zu verschiedenen Zeiten in Hallen in und um München.</p></div></li>
+      <li class="step"><div class="badge"><svg class="step-ball" aria-hidden="true"><use href="#b-volleyball"/></svg><span class="n">2</span></div><div><h3>Platz sichern</h3><p>Allein oder zu zweit eintragen. Bezahlt wird erst, wenn das Spiel steht.</p></div></li>
+      <li class="step"><div class="badge"><svg class="step-ball" aria-hidden="true"><use href="#b-basketball"/></svg><span class="n">3</span></div><div><h3>Hingehen und spielen</h3><p>Sind genug zusammen, ist der Platz gebucht. Du musst nur noch auftauchen.</p></div></li>
     </ol>
     <p class="after">So einfach kann Mannschaftssport sein.</p>
   </section>
