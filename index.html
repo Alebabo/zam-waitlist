@@ -333,8 +333,17 @@
   const setMin=v=>{document.body.classList.toggle('min',v);try{localStorage.setItem('zamDockMin',v?'1':'')}catch{}};
   try{if(localStorage.getItem('zamDockMin'))setMin(true)}catch{}
   document.getElementById('dockClose').onclick=()=>setMin(true);
-  document.getElementById('bubble').onclick=()=>{setMin(false);f.email.focus()};
-  document.querySelectorAll('a[href="#dock"]').forEach(a=>a.onclick=e=>{e.preventDefault();setMin(false);f.email.focus()});
+  document.getElementById('bubble').onclick=()=>{setMin(false);f.email.focus({preventScroll:true})};
+  document.querySelectorAll('a[href="#dock"]').forEach(a=>a.onclick=e=>{e.preventDefault();setMin(false);f.email.focus({preventScroll:true})});
+  // Tastatur (iOS): Seite nicht mitscrollen, Warteliste über der Tastatur halten
+  const dock=document.getElementById('dock'),vv=window.visualViewport;
+  let lockY=null,lockT=0;
+  const place=()=>{if(!vv)return;const off=Math.max(0,window.innerHeight-vv.height-vv.offsetTop);dock.style.transform=off?`translateY(${-off}px)`:'';
+    if(lockY!==null&&Date.now()<lockT&&Math.abs(window.scrollY-lockY)>1)window.scrollTo(0,lockY)};
+  if(vv){vv.addEventListener('resize',place);vv.addEventListener('scroll',place)}
+  f.email.addEventListener('focus',()=>{lockY=window.scrollY;lockT=Date.now()+900;requestAnimationFrame(place)});
+  window.addEventListener('scroll',()=>{if(lockY!==null&&Date.now()<lockT&&Math.abs(window.scrollY-lockY)>1)window.scrollTo(0,lockY)},{passive:true});
+  f.email.addEventListener('blur',()=>{lockY=null;setTimeout(place,50)});
   const sl=[...document.querySelectorAll('.slides img')];let si=0;
   if(sl.length>1&&!matchMedia('(prefers-reduced-motion: reduce)').matches){sl.forEach(i=>i.loading='eager');setInterval(()=>{sl[si].classList.remove('on');si=(si+1)%sl.length;sl[si].classList.add('on')},5000)}
   const rail=document.getElementById('rail'),pager=document.getElementById('pager');
