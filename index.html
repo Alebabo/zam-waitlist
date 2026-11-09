@@ -324,7 +324,7 @@
     try{
       const r=await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value})});
       const d=await r.json();
-      if(r.ok){say(d.existing?'Du stehst schon drauf. Wir melden uns.':'Passt. Du hörst von uns, sobald das erste Spiel steht.');if(!d.existing&&c.textContent!=='–')setCount(+c.textContent+1);f.reset()}
+      if(r.ok){say(d.existing?'Deine E-Mail ist bereits bestätigt. Du stehst auf der Warteliste.':'Fast geschafft! Bitte bestätige deine E-Mail über den Link, den wir dir gerade geschickt haben.');f.reset()}
       else say(d.error||'Hat nicht geklappt. Nochmal?',true);
     }catch{say('Hat nicht geklappt. Nochmal?',true)}
     b.disabled=false;
