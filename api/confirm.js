@@ -5,7 +5,7 @@ const SITE = 'https://zamspielen.de';
 
 function validToken(email, expires, signature) {
   if (!process.env.RESEND_API_KEY || !email || !expires || !signature) return false;
-  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || !/^\\d+$/.test(expires) || Number(expires) < Date.now()) return false;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\d+$/.test(expires) || Number(expires) < Date.now()) return false;
   const expected = createHmac('sha256', process.env.RESEND_API_KEY).update(`${email}:${expires}`).digest('hex');
   const a = Buffer.from(signature, 'hex');
   const b = Buffer.from(expected, 'hex');
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
   if (method !== 'GET' && method !== 'POST') return res.status(405).send('Method not allowed');
 
   if (!validToken(email, expires, signature)) {
-    const expired = /^\\d+$/.test(expires) && Number(expires) < Date.now();
+    const expired = /^\d+$/.test(expires) && Number(expires) < Date.now();
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     return res.status(400).send(html(expired ? 'Link abgelaufen' : 'Link ungültig', expired
       ? 'Bitte melde dich erneut auf zamspielen.de an, um einen neuen Bestätigungslink zu erhalten.'
