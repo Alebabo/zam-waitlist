@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     return res.send(page(title, message));
   };
 
-  if (!process.env.RESEND_API_KEY || !email || !expires || !signature || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+  if (!process.env.RESEND_API_KEY || !email || !expires || !signature || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return fail('Link ungültig', 'Dieser Bestätigungslink ist ungültig oder unvollständig.');
   }
-  if (!/^\\d+$/.test(expires) || Number(expires) < Date.now()) {
+  if (!/^\d+$/.test(expires) || Number(expires) < Date.now()) {
     return fail('Link abgelaufen', 'Bitte melde dich erneut auf zamspielen.de an, um einen neuen Bestätigungslink zu erhalten.');
   }
 
