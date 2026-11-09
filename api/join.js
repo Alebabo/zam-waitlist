@@ -52,7 +52,7 @@ export default async function handler(req, res) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     return res.status(400).json({ error: 'Bitte eine gültige E-Mail eingeben.' });
   }
-  if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM) {
+  if (!process.env.RESEND_API_KEY) {
     console.error('Missing RESEND_API_KEY or RESEND_FROM');
     return res.status(500).json({ error: 'Die Bestätigungsmail ist gerade nicht verfügbar.' });
   }
@@ -64,8 +64,6 @@ export default async function handler(req, res) {
 
   try {
     const existingResponse = await fetch(`${API}/contacts/${encodeURIComponent(email)}`, { headers });
-    let shouldSendConfirmation = true;
-
     if (existingResponse.ok) {
       const contact = await existingResponse.json();
       if (contact.unsubscribed === false) {
@@ -97,7 +95,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        from: process.env.RESEND_FROM,
+        from: process.env.RESEND_FROM || 'Zam <noreply@zamspielen.de>',
         to: email,
         subject: 'Bitte bestätige deine E-Mail für Zam',
         text: mail.text,
