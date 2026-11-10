@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "live.zamspielen.de" }],
+      "destination": "/live.html"
+    },
+    { "source": "/live", "destination": "/live.html" }
+  ]
+}

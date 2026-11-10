@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zam – So viele warten schon</title>
+<meta name="description" content="So viele warten schon aufs erste offene Spiel mit Zam in München. Trag dich ein.">
+<link rel="icon" href="https://zamspielen.de/favicon.svg?v=20261110" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://zamspielen.de/favicon.svg?v=20261110">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zam – So viele warten schon">
+<meta property="og:description" content="Offene Spiele in München für alle ohne feste Gruppe. Trag dich ein.">
+<meta property="og:image" content="https://zamspielen.de/favicon.svg?v=20261110">
+<meta name="theme-color" content="#0F2A20">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<style>
+  :root{
+    --wald:#0F3D2E; --wald-press:#0B2E22; --tanne:#0F2A20; --gruengrau:#5E7268;
+    --salbei:#8DB89A; --mint:#CFE8D5; --off:#F7F3EC; --beige-d:#DDD6C9; --warm:#EDE7DC; --rot:#B3261E;
+    --head:"Barlow Condensed","Arial Narrow",sans-serif;
+    --body:"DM Sans",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--tanne);color:#fff;font:500 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+  .t{font-family:var(--head);font-weight:800;text-transform:uppercase;line-height:1}
+
+  .stage{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+  .slides{position:fixed;inset:0;z-index:0}
+  .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+  .slides img.on{opacity:1}
+  .slides::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,42,32,.55) 0%,rgba(15,42,32,.35) 40%,rgba(12,22,17,.85) 100%)}
+
+  .glass{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;
+    backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 40px rgba(0,0,0,.22)}
+
+  header{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
+    padding:calc(14px + env(safe-area-inset-top)) 20px 0;max-width:1100px;width:100%;margin:0 auto}
+  .logo img{width:52px;height:52px;border-radius:12px;display:block}
+  .pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font:700 13px/1 var(--body);text-decoration:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(207,232,213,.7);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(207,232,213,0)}100%{box-shadow:0 0 0 0 rgba(207,232,213,0)}}
+
+  main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:24px 16px calc(28px + env(safe-area-inset-bottom));gap:28px}
+  .hero{display:flex;flex-direction:column;align-items:center}
+  .party{font-size:clamp(56px,12vw,96px);line-height:1;display:inline-block;transform-origin:50% 80%}
+  .party.pop{animation:pop .9s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes pop{0%{transform:scale(.6) rotate(-12deg)}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0)}}
+  .num{font-size:clamp(150px,38vw,340px);letter-spacing:-.01em;line-height:.86;margin-top:6px;
+    font-variant-numeric:tabular-nums;text-shadow:0 8px 40px rgba(0,0,0,.25)}
+  .num.bump{animation:bump .6s ease}
+  @keyframes bump{40%{transform:scale(1.06);color:var(--mint)}}
+  .label{margin-top:10px;font:700 clamp(24px,5vw,40px)/1.05 var(--head);text-transform:uppercase;letter-spacing:.04em;color:var(--mint)}
+  .sub{margin-top:10px;color:var(--warm);font-size:clamp(15px,2.2vw,18px);max-width:460px}
+
+  .card{width:100%;max-width:480px;padding:16px;border-radius:20px;text-align:left}
+  form{display:flex;gap:8px}
+  input{flex:1;min-width:0;height:54px;border:0;border-radius:12px;padding:0 16px;font:500 16px var(--body);color:var(--tanne);
+    background:rgba(255,255,255,.92);outline:none;box-shadow:inset 0 0 0 1.5px transparent}
+  input::placeholder{color:var(--gruengrau)}
+  input:focus{box-shadow:inset 0 0 0 2px var(--mint)}
+  input.err{box-shadow:inset 0 0 0 2px var(--rot)}
+  button{height:54px;padding:0 20px;border:0;border-radius:12px;background:var(--wald);color:#fff;font:800 15px/1 var(--body);cursor:pointer;white-space:nowrap;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+  button:active{background:var(--wald-press)}
+  button:disabled{opacity:.6;cursor:default}
+  .msg{font-size:14px;font-weight:600;margin:10px 4px 0;color:var(--mint)}.msg:empty{display:none}
+  .msg.err{color:#FFB4AB}
+  .fine{margin:10px 4px 0;font-size:12.5px;color:rgba(237,231,220,.75)}
+  .fine a{color:var(--mint);font-weight:700;text-decoration:none}
+  @media (max-width:420px){form{flex-direction:column}button{width:100%}}
+
+  footer{position:relative;z-index:2;text-align:center;padding:0 16px calc(18px + env(safe-area-inset-bottom));font-size:13px;font-weight:600;color:rgba(237,231,220,.7)}
+
+  #confetti{position:fixed;inset:0;z-index:5;pointer-events:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="stage">
+  <div class="slides" aria-hidden="true">
+    <img class="on" src="https://images.unsplash.com/photo-1774798154084-c2b861d8581d?w=1800&q=75&auto=format&fit=crop" alt="" fetchpriority="high">
+    <img src="https://images.unsplash.com/photo-1785528235873-aa0c1ab2c5c8?w=1800&q=75&auto=format&fit=crop" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1601512986351-9b0e01780eef?w=1800&q=75&auto=format&fit=crop" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1770230901556-4e1c0bacfb09?w=1800&q=75&auto=format&fit=crop" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1741652781778-55d16665bb41?w=1800&q=75&auto=format&fit=crop" alt="" loading="lazy">
+  </div>
+
+  <header>
+    <a class="logo" href="https://zamspielen.de" aria-label="Zam"><img src="https://zamspielen.de/favicon.svg?v=20261110" alt="Zam"></a>
+    <span class="pill glass"><span class="dot"></span>Live · München</span>
+  </header>
+
+  <main>
+    <div class="hero">
+      <span class="party" id="party" role="img" aria-label="Party">🎉</span>
+      <div class="t num" id="count" aria-live="polite">–</div>
+      <div class="label" id="label">warten schon aufs erste Spiel</div>
+      <p class="sub">Offene Spiele in München für alle ohne feste Gruppe. Allein eintragen, Mitspieler finden wir.</p>
+    </div>
+
+    <div class="card glass">
+      <form id="f">
+        <input type="email" name="email" placeholder="deine@mail.de" required autocomplete="email" aria-label="E-Mail-Adresse">
+        <button>Ich bin dabei</button>
+      </form>
+      <div class="msg" id="msg"></div>
+      <p class="fine">Du bekommst eine Mail zum Bestätigen. Mehr zu Zam auf <a href="https://zamspielen.de">zamspielen.de</a></p>
+    </div>
+  </main>
+
+  <footer>Zam machma Sport · TUM Startup Launchpad</footer>
+</div>
+
+<script>
+  // Gleicher Offset wie auf zamspielen.de (externe Anmeldungen des Teams)
+  const EXTERNAL_WAITLIST_COUNT=51;
+  const c=document.getElementById('count'),lb=document.getElementById('label'),party=document.getElementById('party'),
+        m=document.getElementById('msg'),f=document.getElementById('f');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let shown=null;
+
+  const render=n=>{c.textContent=n.toLocaleString('de-DE');lb.textContent=n===1?'wartet schon aufs erste Spiel':'warten schon aufs erste Spiel'};
+  const countUp=(from,to)=>{
+    if(reduce||to-from<=0){render(to);return}
+    const t0=performance.now(),d=Math.min(1600,400+(to-from)*30);
+    const step=t=>{const p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,3);render(Math.round(from+(to-from)*e));if(p<1)requestAnimationFrame(step)};
+    requestAnimationFrame(step);
+  };
+  const celebrate=()=>{party.classList.remove('pop');void party.offsetWidth;party.classList.add('pop');
+    c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');confetti()};
+
+  const load=()=>fetch('/api/count',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+    if(typeof d.count!=='number')return;
+    const n=d.count+EXTERNAL_WAITLIST_COUNT;
+    if(shown===null){countUp(0,n);setTimeout(celebrate,reduce?0:900)}
+    else if(n>shown){countUp(shown,n);celebrate()}
+    shown=n;
+  }).catch(()=>{});
+  load();setInterval(load,30000);
+
+  const say=(t,err)=>{m.textContent=t;m.classList.toggle('err',!!err);f.email.classList.toggle('err',!!err)};
+  f.onsubmit=async e=>{
+    e.preventDefault();const b=f.querySelector('button');b.disabled=true;say('');
+    try{
+      const r=await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value})});
+      const d=await r.json();
+      if(r.ok){say(d.existing?'Du stehst schon auf der Warteliste.':'Fast geschafft! Bestätige deine E-Mail über den Link, den wir dir gerade geschickt haben.');f.reset();if(!d.existing)confetti()}
+      else say(d.error||'Hat nicht geklappt. Nochmal?',true);
+    }catch{say('Hat nicht geklappt. Nochmal?',true)}
+    b.disabled=false;
+  };
+
+  // Hintergrund-Slides
+  const sl=[...document.querySelectorAll('.slides img')];let si=0;
+  if(sl.length>1&&!reduce){sl.forEach(i=>i.loading='eager');setInterval(()=>{sl[si].classList.remove('on');si=(si+1)%sl.length;sl[si].classList.add('on')},6000)}
+
+  // Konfetti in Zam-Farben
+  const cv=document.getElementById('confetti'),cx=cv.getContext('2d');let parts=[],raf=null;
+  const size=()=>{cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)};
+  size();addEventListener('resize',size);
+  function confetti(){
+    if(reduce)return;
+    const cols=['#CFE8D5','#8DB89A','#F7F3EC','#3E8E63','#EFE8DC','#FFFFFF'];
+    const x=innerWidth/2,y=innerHeight*.35;
+    for(let i=0;i<140;i++){const a=Math.random()*Math.PI*2,v=4+Math.random()*9;
+      parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-6,w:6+Math.random()*6,h:8+Math.random()*8,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],life:0})}
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    cx.clearRect(0,0,innerWidth,innerHeight);
+    parts=parts.filter(p=>p.life<220&&p.y<innerHeight+40);
+    for(const p of parts){p.vy+=.22;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.max(0,1-p.life/220);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.life*.1)));cx.restore()}
+    raf=parts.length?requestAnimationFrame(tick):(cx.clearRect(0,0,innerWidth,innerHeight),null);
+  }
+</script>
+</body>
+</html>
