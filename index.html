@@ -55,7 +55,7 @@
   /* Header */
   header{position:relative;z-index:5;padding-top:env(safe-area-inset-top);background:var(--weiss);border-bottom:1px solid var(--beige-h)}
   .bar{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 4px}
-  .logo{font:800 30px/1 var(--head);letter-spacing:.01em;color:var(--wald);text-decoration:none}
+  .logo{display:flex;align-items:center;text-decoration:none}.logo img{display:block;width:52px;height:52px;object-fit:contain;border-radius:6px}
   .right{display:flex;align-items:center;gap:14px}
   .tum{font-size:13px;font-weight:600;color:var(--gruengrau)}
   main{padding-bottom:calc(200px + env(safe-area-inset-bottom))}
@@ -198,7 +198,7 @@
 <header>
   <div class="wrap">
     <div class="bar">
-      <a class="logo" href="#top" aria-label="Zam">ZAM</a>
+      <a class="logo" href="#top" aria-label="Zam"><img src="/favicon.svg" alt="Zam"></a>
       <div class="right">
         <span class="tum">TUM Startup Launchpad</span>
         <a class="btn btn-sec" href="#dock">Mitspielen</a>
