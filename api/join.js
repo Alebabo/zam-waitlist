@@ -37,7 +37,7 @@ function confirmationEmail(email) {
         </div>
         <div style="padding:18px 32px;background:#fafbfc;border-top:1px solid #edf0f4">
           <a href="${SITE}" style="font-size:13px;color:#3070B3;text-decoration:none;font-weight:700">zamspielen.de</a>
-          <span style="float:right;font-size:12px;color:#9aa3b2">Zusammen spielen.</span>
+          <span style="float:right;font-size:12px;color:#9aa3b2">Zusammen spielen.</span><div style="clear:both;text-align:center;padding-top:22px"><img src="${SITE}/favicon.svg" width="76" height="76" alt="Zam" style="display:block;width:76px;height:76px;margin:0 auto;border:0"></div>
         </div>
       </div>
     </div>
